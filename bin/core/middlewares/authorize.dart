@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:shelf/shelf.dart';
 
-import 'core/configs.dart';
+import '../configs.dart';
 
 class Authorize {
   FutureOr<Response> Function(Request) call(innerHandler) {
