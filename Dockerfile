@@ -15,7 +15,11 @@ RUN dart compile exe bin/server.dart -o bin/server
 FROM scratch
 COPY --from=build /runtime/ /
 COPY --from=build /app/bin/server /app/bin/
+COPY --from=build /app/files/ /app/files/
 
 # Start server.
-EXPOSE 8080
+EXPOSE 80
 CMD ["/app/bin/server"]
+
+# $ docker build -t api-manga-easy .
+# $ docker run -it --rm -p 8000:8000 --name api-easy api-manga-easy
