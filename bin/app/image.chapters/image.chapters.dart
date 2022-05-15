@@ -5,7 +5,9 @@ import '../../core/configs.dart';
 
 class ImagechapterList {
   Response call(Request req) {
-    switch (req.requestedUri.queryParameters['chapter']) {
+    var manga = req.requestedUri.queryParameters['chapter'];
+    manga = manga!.replaceAll('easy-scan', '');
+    switch (manga) {
       case 'MentallyBroken1':
         return Response.ok(
           json.encode({

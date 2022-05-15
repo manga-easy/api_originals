@@ -10,7 +10,7 @@ class MangasList {
             {
               'id': 'MentallyBroken',
               'title': 'Mentally Broken',
-              'href': 'MentallyBroken',
+              'href': 'easy-scanMentallyBroken',
               'capa': '${Configs.ipAplication}/mentally-broken/capa.png',
             }
           ]

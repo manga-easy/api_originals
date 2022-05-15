@@ -17,19 +17,17 @@ final _router = Router()
   ..get('/imagechapter', ImagechapterList());
 
 var files = createStaticHandler(
-  'files',
+  '/app/files',
   useHeaderBytesForContentType: true,
 );
 void main(List<String> args) async {
-  // Use any available host or container IP (usually `0.0.0.0`).
-  final ip = InternetAddress.loopbackIPv4;
   final cascade = Cascade().add(files).add(_router);
   // Configure a pipeline that logs requests.
-  final _handler =
+  final handler =
       Pipeline().addMiddleware(logRequests()).addMiddleware(Authorize()).addHandler(cascade.handler);
 
   // For running in containers, we respect the PORT environment variable.
   final port = int.parse(Configs.portAplication);
-  await serve(_handler, ip, port);
-  print('Server listening on port http://${Configs.ipAplication}:${Configs.portAplication}');
+  await serve(handler, '0.0.0.0', port);
+  print('Server listening on port ${Configs.ipAplication}');
 }
