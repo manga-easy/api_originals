@@ -1,0 +1,16 @@
+{
+    "name": "manga_easy/api_easy_scan",
+    "description": "Api para obras autorais do Mangá Easy",
+    "authors": [{
+        "name": "Lucas CM",
+        "email": "lucas.cardo123@hotmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "require": {
+        "slim/slim": "^4.10"
+    }
+}

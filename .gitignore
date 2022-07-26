@@ -5,4 +5,5 @@
 # Conventional directory for build output.
 build/
 pubspec.lock
-bin/core/configs.dart
+composer.lock
+/vendor
