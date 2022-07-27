@@ -5,7 +5,7 @@ CREATE TABLE comic (
     sinopse text NOT NULL,
     autor varchar NOT NULL,
     year_up int NOT NULL,
-    scans json NOT NULL,
+    scans varchar NOT NULL,
     status boolean NOT NULL,
     cover varchar NOT NULL
 );
