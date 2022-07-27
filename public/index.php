@@ -20,6 +20,7 @@ $app->addErrorMiddleware(true, true, true);
 $app->group('/comic', function (RouteCollectorProxy $group) {
     $group->get('', [ComicController::class , 'list']);
     $group->get('/{id}', [ComicController::class , 'get']);
+    $group->post('', [ComicController::class , 'create']);
 });
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 

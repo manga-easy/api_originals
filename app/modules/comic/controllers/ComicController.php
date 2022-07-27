@@ -4,6 +4,8 @@ namespace app\modules\comic\controllers;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use app\modules\comic\repositories\ComicRepository;
+use app\modules\comic\models\ComicModel;
+
 
 
 class ComicController
@@ -37,6 +39,24 @@ class ComicController
     try {
       $params = $request->getQueryParams();
       $mangas = $this->detalhesMangaRepository->list($params);
+      $response->getBody()->write(
+        json_encode($mangas)
+      );
+    }
+    catch (\Throwable $th) {
+      $response->getBody()->write(
+        json_encode(['erro' => $th->getMessage()])
+      );
+    }
+    return $response;
+  }
+
+  function create(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    try {
+      $body = json_decode($request->getBody()->getContents(), true);
+      $comic = ComicModel::arrayTo($body);
+      $mangas = $this->detalhesMangaRepository->create($comic);
       $response->getBody()->write(
         json_encode($mangas)
       );

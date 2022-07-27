@@ -2,7 +2,6 @@
 
 namespace app\Core;
 
-use app\Interfaces\IModel;
 use Exception;
 
 
