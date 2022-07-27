@@ -17,7 +17,7 @@ class ComicController
   {
     try {
       if (empty($args['id'])) {
-        throw new \Exception("Parametro manga é obrigatório", 1);
+        throw new \Exception("Parametro id do manga é obrigatório", 1);
       }
       $mangas = $this->detalhesMangaRepository->get($args);
       $response->getBody()->write(
@@ -36,7 +36,7 @@ class ComicController
   {
     try {
       $params = $request->getQueryParams();
-      $mangas = $this->detalhesMangaRepository->list();
+      $mangas = $this->detalhesMangaRepository->list($params);
       $response->getBody()->write(
         json_encode($mangas)
       );
