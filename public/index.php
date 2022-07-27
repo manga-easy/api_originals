@@ -3,6 +3,7 @@ use Slim\Factory\AppFactory;
 use DI\Container;
 use app\modules\comic\controllers\ComicController;
 use Slim\Routing\RouteCollectorProxy;
+use app\modules\chapter\controllers\ChapterController;
 
 require __DIR__ . '/../vendor/autoload.php';
 $di = new Container();
@@ -21,6 +22,12 @@ $app->group('/comic', function (RouteCollectorProxy $group) {
     $group->get('', [ComicController::class , 'list']);
     $group->get('/{id}', [ComicController::class , 'get']);
     $group->post('', [ComicController::class , 'create']);
+});
+
+$app->group('/chapter', function (RouteCollectorProxy $group) {
+    $group->get('', [ChapterController::class , 'list']);
+    $group->get('/{id}', [ChapterController::class , 'get']);
+    $group->post('', [ChapterController::class , 'create']);
 });
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 
