@@ -1,15 +1,13 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
-use app\modules\detalhes\DetalhesMangaController;
 use DI\Container;
+use app\modules\comic\controllers\ComicController;
 
 require __DIR__ . '/../vendor/autoload.php';
-$container = new Container();
+$di = new Container();
 
 // Set container to create App with on AppFactory
-AppFactory::setContainer($container);
+AppFactory::setContainer($di);
 
 // Instantiate App
 $app = AppFactory::create();
@@ -18,7 +16,7 @@ $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
 
 // $app->get('/manga', [QueueController::class , 'list']);
-$app->get('/detalhesmanga', [DetalhesMangaController::class , 'call']);
+$app->get('/detalhesmanga', [ComicController::class , 'call']);
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 
 $app->run();

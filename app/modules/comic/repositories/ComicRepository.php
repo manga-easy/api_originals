@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\detalhes;
+namespace app\modules\comic\repositories;
 use app\Core\Repository;
 
 
-class DetalhesMangaRepository extends Repository
+class ComicRepository extends Repository
 {
     function config()
     {

@@ -1,14 +1,15 @@
 <?php
 
-namespace app\modules\detalhes;
+namespace app\modules\comic\controllers;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use app\modules\comic\repositories\ComicRepository;
 
 
-class DetalhesMangaController
+class ComicController
 {
-  protected DetalhesMangaRepository $detalhesMangaRepository;
-  function __construct(DetalhesMangaRepository $detalhesMangaRepository)
+  protected ComicRepository $detalhesMangaRepository;
+  function __construct(ComicRepository $detalhesMangaRepository)
   {
     $this->detalhesMangaRepository = $detalhesMangaRepository;
   }
