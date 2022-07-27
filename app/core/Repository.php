@@ -5,7 +5,7 @@ namespace app\Core;
 use Exception;
 
 
-class Repository
+abstract class Repository
 {
     public DataBase $db;
     protected string $table = '';
@@ -69,8 +69,8 @@ class Repository
         }
         $query .= " WHERE id = :id";
 
-        if (empty($params['id'])) {
-            throw new Exception("Par�metro id � obrigat�rio, $table");
+        if (!array_key_exists('id', $params)) {
+            throw new Exception("Parâmetro id é obrigatório, $table");
         }
         return $this->db->update($query, $params);
     }
@@ -79,8 +79,8 @@ class Repository
     {
         $table = $this->table;
         $query = "DELETE FROM $table WHERE id = :id";
-        if (empty($params['id'])) {
-            throw new Exception("Par�metro id � obrigat�rio, $table");
+        if (!array_key_exists('id', $params)) {
+            throw new Exception("Parâmetro id é obrigatório, $table");
         }
         return $this->db->delete($query, $params);
     }
@@ -89,8 +89,8 @@ class Repository
         $table = $this->table;
         $query = "SELECT * FROM $table WHERE id = :id";
 
-        if (empty($params['id'])) {
-            throw new Exception("Par�metro id � obrigat�rio, $table");
+        if (!array_key_exists('id', $params)) {
+            throw new Exception("Parâmetro id é obrigatório, $table");
         }
         return $this->db->read($query, $params)->fetch();
     }
