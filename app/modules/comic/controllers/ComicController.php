@@ -13,14 +13,29 @@ class ComicController
   {
     $this->detalhesMangaRepository = $detalhesMangaRepository;
   }
-  function call(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  function get(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    try {
+      if (empty($args['id'])) {
+        throw new \Exception("Parametro manga é obrigatório", 1);
+      }
+      $mangas = $this->detalhesMangaRepository->get($args);
+      $response->getBody()->write(
+        json_encode($mangas)
+      );
+    }
+    catch (\Throwable $th) {
+      $response->getBody()->write(
+        json_encode(['erro' => $th->getMessage()])
+      );
+    }
+    return $response;
+  }
+
+  function list(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
     try {
       $params = $request->getQueryParams();
-      if (empty($params['manga'])) {
-        throw new \Exception("Parametro manga é obrigatório", 1);
-
-      }
       $mangas = $this->detalhesMangaRepository->list();
       $response->getBody()->write(
         json_encode($mangas)

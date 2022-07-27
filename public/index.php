@@ -2,6 +2,7 @@
 use Slim\Factory\AppFactory;
 use DI\Container;
 use app\modules\comic\controllers\ComicController;
+use Slim\Routing\RouteCollectorProxy;
 
 require __DIR__ . '/../vendor/autoload.php';
 $di = new Container();
@@ -16,7 +17,10 @@ $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
 
 // $app->get('/manga', [QueueController::class , 'list']);
-$app->get('/detalhesmanga', [ComicController::class , 'call']);
+$app->group('/comic', function (RouteCollectorProxy $group) {
+    $group->get('', [ComicController::class , 'list']);
+    $group->get('/{id}', [ComicController::class , 'get']);
+});
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 
 $app->run();
