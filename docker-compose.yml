@@ -1,45 +1,52 @@
-x-logging:
-  &x-logging
-  logging:
-    driver: 'json-file'
-    options:
-      max-file: '5'
-      max-size: '10m'
-
 version: '3.7'
-networks:
-  working:
-    driver: bridge
+
+x-logging:
+    &x-logging
+    logging:
+        driver: 'json-file'
+        options:
+            max-file: '5'
+            max-size: '10m'
+
 services:
-  db:
-    image: postgres
-    restart: always
-    #container_name: postgresql
-    environment:
-      - POSTGRES_USER=easy_scan
-      - POSTGRES_PASSWORD=W9uQ0CcBn4Z8oP@1b@9bZ8sX
-      - POSTGRES_DB=easy_scan
-    ports:
-      - 5433:5432
-    networks:
-      - working
-    volumes:
-      - db:/var/lib/postgresql/data
-  app:
-    build: .
-    ports:
-      - 80:80
-    privileged: true
-    environment:
-      - DB_BASE=easy_scan
-      - DB_USER=easy_scan
-      - DB_PASSWD=W9uQ0CcBn4Z8oP@1b@9bZ8sX
-    depends_on:
-      - db
-    networks:
-      - working
-    volumes:
-      - storage:/var/www/storage
+    db:
+        image: postgres
+        restart: always
+        environment:
+            - POSTGRES_USER=easy_scan
+            - POSTGRES_PASSWORD=W9uQ0CcBn4Z8oP@1b@9bZ8sX
+            - POSTGRES_DB=easy_scan
+        ports:
+            - 5434:5432
+        networks:
+            - backend
+        volumes:
+            - db:/var/lib/postgresql/data
+    app:
+        build: .
+        working_dir: /var/www
+        command: php -S 0.0.0.0:80 -t public
+        ports:
+            - 8083:80
+        privileged: true
+        environment:
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_BASE=easy_scan
+            - DB_USER=easy_scan
+            - DB_PASSWD=W9uQ0CcBn4Z8oP@1b@9bZ8sX
+        depends_on:
+            - db
+        networks:
+            - backend
+        volumes:
+            - .:/var/www
+            - logs:/var/www/logs
 volumes:
-  storage:
-  db:
+    storage:
+    db:
+    logs:
+        driver: local
+networks:
+    backend:
+        driver: bridge
