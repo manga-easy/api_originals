@@ -14,7 +14,7 @@ class ComicModel implements IModel
     public string $cover;
 
     function __construct(
-        $id = null,
+        $id,
         $title,
         $uniqueid,
         $sinopse,

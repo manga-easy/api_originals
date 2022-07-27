@@ -5,15 +5,18 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use app\modules\comic\repositories\ComicRepository;
 use app\modules\comic\models\ComicModel;
+use app\modules\chapter\repositories\ChapterRepository;
 
 
 
 class ComicController
 {
   protected ComicRepository $detalhesMangaRepository;
-  function __construct(ComicRepository $detalhesMangaRepository)
+  protected ChapterRepository $chapterRepository;
+  function __construct(ComicRepository $detalhesMangaRepository, ChapterRepository $chapterRepository)
   {
     $this->detalhesMangaRepository = $detalhesMangaRepository;
+    $this->chapterRepository = $chapterRepository;
   }
   function get(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
   {
@@ -21,9 +24,11 @@ class ComicController
       if (empty($args['id'])) {
         throw new \Exception("Parametro id do manga é obrigatório", 1);
       }
-      $mangas = $this->detalhesMangaRepository->get($args);
+      $manga = $this->detalhesMangaRepository->get($args);
+      $detalhes = $manga->toArray();
+      $detalhes['chapter'] = $this->chapterRepository->list(['id_comic' => $manga->id]);
       $response->getBody()->write(
-        json_encode($mangas)
+        json_encode($detalhes)
       );
     }
     catch (\Throwable $th) {
