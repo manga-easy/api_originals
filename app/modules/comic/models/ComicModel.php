@@ -5,6 +5,7 @@ class ComicModel implements IModel
 {
     public ?int $id;
     public string $title;
+    public string $id_user;
     public string $uniqueid;
     public string $sinopse;
     public string $autor;
@@ -16,6 +17,7 @@ class ComicModel implements IModel
     function __construct(
         $id,
         $title,
+        $id_user,
         $uniqueid,
         $sinopse,
         $autor,
@@ -27,6 +29,7 @@ class ComicModel implements IModel
     {
         $this->id = $id;
         $this->title = $title;
+        $this->id_user = $id_user;
         $this->uniqueid = $uniqueid;
         $this->sinopse = $sinopse;
         $this->autor = $autor;
@@ -41,6 +44,7 @@ class ComicModel implements IModel
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'id_user' => $this->id_user,
             'uniqueid' => $this->uniqueid,
             'sinopse' => $this->sinopse,
             'autor' => $this->autor,
@@ -54,6 +58,7 @@ class ComicModel implements IModel
     {
         return new self(
             id: $params['id'],
+            id_user:$params['id_user'],
             title: $params['title'],
             uniqueid: $params['uniqueid'],
             sinopse: $params['sinopse'],
