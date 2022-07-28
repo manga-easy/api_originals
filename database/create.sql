@@ -30,3 +30,13 @@ CREATE TABLE chapter (
     date_up timestamp DEFAULT now(),
     CONSTRAINT fk_comic FOREIGN KEY(id_comic) REFERENCES comic(id)
 );
+
+CREATE TABLE content_chapter (
+    id SERIAL NOT NULL PRIMARY KEY,
+    id_chapter int NOT null,
+    content text NOT NULL,
+    type varchar NOT NULL,
+    date_at timestamp DEFAULT now(),
+    date_up timestamp DEFAULT now(),
+    CONSTRAINT fk_chapter FOREIGN KEY(id_chapter) REFERENCES chapter(id)
+);
