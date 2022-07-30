@@ -38,6 +38,8 @@ $app->group('/content_chapter', function (RouteCollectorProxy $group) {
     $group->post('', [ContentChapterController::class , 'create']);
 });
 $app->post('/upload', [FilesController::class , 'uploadFile']);
+$app->get('/link/{path}/{file}', [FilesController::class , 'link']);
+
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 
 $app->run();

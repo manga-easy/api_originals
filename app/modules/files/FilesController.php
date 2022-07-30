@@ -4,13 +4,11 @@ namespace app\modules\files;
 use Slim\Psr7\UploadedFile;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Psr7\Stream;
 class FilesController
 {
     function uploadFile(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-
-
-
         $uploadedFiles = $request->getUploadedFiles();
         $path = $request->getQueryParams()['path'];
         $directory = "/var/www/files/$path";
@@ -49,6 +47,16 @@ class FilesController
         $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
 
         return $filename;
+    }
+
+    function link(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        // $response->getBody()->write("/var/www/files/{$args['path']}/{$args['file']}");
+        // return $response;
+        $response = $response->withHeader('Content-Type', 'application/pdf');
+        $stream = fopen("/var/www/files/{$args['path']}/{$args['file']}.pdf", 'r+');
+
+        return $response->withBody(new Stream($stream));
     }
 }
 
