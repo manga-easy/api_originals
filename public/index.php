@@ -5,6 +5,7 @@ use app\modules\comic\controllers\ComicController;
 use Slim\Routing\RouteCollectorProxy;
 use app\modules\chapter\controllers\ChapterController;
 use app\modules\content_chapter\controllers\ContentChapterController;
+use app\modules\files\FilesController;
 
 require __DIR__ . '/../vendor/autoload.php';
 $di = new Container();
@@ -36,6 +37,7 @@ $app->group('/content_chapter', function (RouteCollectorProxy $group) {
     $group->get('/{id}', [ContentChapterController::class , 'get']);
     $group->post('', [ContentChapterController::class , 'create']);
 });
+$app->post('/upload', [FilesController::class , 'uploadFile']);
 // $app->get('/imagechapter', [QueueController::class , 'list']);
 
 $app->run();
