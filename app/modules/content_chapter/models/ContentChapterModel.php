@@ -8,23 +8,23 @@ class ContentChapterModel implements IModel
     public int $id_chapter;
     public string $content;
     public string $type;
-    public string $date_at;
-    public string $date_up;
+    public string $createAt;
+    public string $updateAt;
     function __construct(
         $id,
         $id_chapter,
         $content,
         $type,
-        $date_at,
-        $date_up
+        $createAt,
+        $updateAt
         )
     {
         $this->id = $id;
         $this->id_chapter = $id_chapter;
         $this->content = $content;
         $this->type = $type;
-        $this->date_at = $date_at;
-        $this->date_up = $date_up;
+        $this->createAt = $createAt;
+        $this->updateAt = $updateAt;
     }
     function toArray(): array
     {
@@ -33,8 +33,8 @@ class ContentChapterModel implements IModel
             'id_chapter' => $this->id_chapter,
             'content' => $this->content,
             'type' => $this->type,
-            'date_at' => $this->date_at,
-            'date_up' => $this->date_up
+            'createAt' => $this->createAt,
+            'updateAt' => $this->updateAt
         ];
     }
 
@@ -45,8 +45,8 @@ class ContentChapterModel implements IModel
             id_chapter: $params['id_chapter'],
             content: $params['content'],
             type: $params['type'],
-            date_at: $params['date_at'] ?? 'now()',
-            date_up: $params['date_up'] ?? 'now()'
+            createAt: $params['createAt'] ?? 'now()',
+            updateAt: $params['updateAt'] ?? 'now()'
        );
     }
 }

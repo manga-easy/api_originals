@@ -7,21 +7,24 @@ class ChapterModel implements IModel
     public int $id_comic;
     public string $title;
     public float $number;
-    public string $date_up;
+    public string $updateAt;
+    public string $createAt;
 
     function __construct(
         $id,
         $id_comic,
         $title,
         $number,
-        $date_up
+        $updateAt,
+        $createAt
         )
     {
         $this->id = $id;
         $this->id_comic = $id_comic;
         $this->title = $title;
         $this->number = $number;
-        $this->date_up = $date_up;
+        $this->updateAt = $updateAt;
+        $this->createAt = $createAt;
     }
 
     function toArray(): array
@@ -31,7 +34,8 @@ class ChapterModel implements IModel
             'id_comic' => $this->id_comic,
             'title' => $this->title,
             'number' => $this->number,
-            'date_up' => $this->date_up
+            'updateAt' => $this->updateAt,
+            'createAt' => $this->createAt
         ];
     }
     static function arrayTo(array $params): self
@@ -41,7 +45,8 @@ class ChapterModel implements IModel
             id_comic: $params['id_comic'],
             title: $params['title'],
             number: $params['number'],
-            date_up: $params['date_up']
+            createAt:$params['createAt'],
+            updateAt: $params['updateAt']
         );
     }
 

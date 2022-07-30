@@ -55,7 +55,7 @@ class ChapterController
   {
     try {
       $body = json_decode($request->getBody()->getContents(), true);
-      $body['date_up'] = 'now()';
+      $body['updateAt'] = 'now()';
       $comic = ChapterModel::arrayTo($body);
       $mangas = $this->detalhesMangaRepository->create($comic);
       $response->getBody()->write(

@@ -13,32 +13,35 @@ class ComicModel implements IModel
     public string $scans;
     public bool $status;
     public string $cover;
-
+    public string $createAt;
+    public string $updateAt;
     function __construct(
-        $id,
-        $title,
-        $id_user,
-        $uniqueid,
-        $sinopse,
-        $autor,
-        $year_up,
-        $scans,
-        $status,
-        $cover
-        )
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->id_user = $id_user;
-        $this->uniqueid = $uniqueid;
-        $this->sinopse = $sinopse;
-        $this->autor = $autor;
-        $this->year_up = $year_up;
-        $this->scans = $scans;
-        $this->status = $status;
-        $this->cover = $cover;
-    }
-
+        ?int $id,
+        string $title,
+        string $id_user,
+        string $uniqueid,
+        string $sinopse,
+        string $autor,
+        int $year_up,
+        string $scans,
+        bool $status,
+        string $cover,
+        string $createAt,
+        string $updateAt
+    ) {
+	    $this->id = $id;
+	    $this->title = $title;
+	    $this->id_user = $id_user;
+	    $this->uniqueid = $uniqueid;
+	    $this->sinopse = $sinopse;
+	    $this->autor = $autor;
+	    $this->year_up = $year_up;
+	    $this->scans = $scans;
+	    $this->status = $status;
+	    $this->cover = $cover;
+	    $this->createAt = $createAt;
+	    $this->updateAt = $updateAt;
+	}
     function toArray(): array
     {
         return [
@@ -51,7 +54,9 @@ class ComicModel implements IModel
             'year_up' => $this->year_up,
             'scans' => $this->scans,
             'status' => $this->status,
-            'cover' => $this->cover
+            'cover' => $this->cover,
+            'createAt'=> $this->createAt,
+            'updateAt'=> $this->updateAt
         ];
     }
     static function arrayTo(array $params): self
@@ -66,8 +71,10 @@ class ComicModel implements IModel
             year_up: $params['year_up'],
             scans: $params['scans'],
             status: $params['status'],
-            cover: $params['cover']
+            cover: $params['cover'],
+            createAt: $params['createAt'],
+            updateAt: $params['updateAt']
         );
     }
-
+	
 }
