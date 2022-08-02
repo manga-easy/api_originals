@@ -40,3 +40,13 @@ CREATE TABLE content_chapter (
     updateAt timestamp DEFAULT now(),
     CONSTRAINT fk_chapter FOREIGN KEY(id_chapter) REFERENCES chapter(id)
 );
+
+CREATE TABLE file (
+    id SERIAL NOT NULL PRIMARY KEY,
+    id_user int NOT null,
+    path text NOT NULL,
+    name varchar NOT NULL,
+    size int NOT NULL,
+    createAt timestamp DEFAULT now(),
+    updateAt timestamp DEFAULT now()
+);
