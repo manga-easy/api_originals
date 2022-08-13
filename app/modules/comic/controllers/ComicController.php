@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\comic\controllers;
+
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use app\modules\comic\repositories\ComicRepository;
@@ -30,8 +31,7 @@ class ComicController
       $response->getBody()->write(
         json_encode($detalhes)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -47,8 +47,7 @@ class ComicController
       $response->getBody()->write(
         json_encode($mangas)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -63,10 +62,26 @@ class ComicController
       $comic = ComicModel::arrayTo($body);
       $mangas = $this->detalhesMangaRepository->create($comic);
       $response->getBody()->write(
-        json_encode($mangas)
+        json_encode(['success' => $mangas])
+      );
+    } catch (\Throwable $th) {
+      $response->getBody()->write(
+        json_encode(['erro' => $th->getMessage()])
       );
     }
-    catch (\Throwable $th) {
+    return $response;
+  }
+
+  function update(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    try {
+      $body = json_decode($request->getBody()->getContents(), true);
+      $comic = ComicModel::arrayTo($body);
+      $mangas = $this->detalhesMangaRepository->update($comic->toArray());
+      $response->getBody()->write(
+        json_encode(['success' => $mangas])
+      );
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );

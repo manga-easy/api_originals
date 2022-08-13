@@ -1,4 +1,5 @@
 <?php
+
 use Slim\Factory\AppFactory;
 use DI\Container;
 use app\modules\comic\controllers\ComicController;
@@ -9,6 +10,7 @@ use app\modules\files\controllers\FilesController;
 
 require __DIR__ . '/../vendor/autoload.php';
 $di = new Container();
+error_reporting(E_ERROR);
 
 // Set container to create App with on AppFactory
 AppFactory::setContainer($di);
@@ -21,28 +23,29 @@ $app->addErrorMiddleware(true, true, true);
 
 // $app->get('/manga', [QueueController::class , 'list']);
 $app->group('/comic', function (RouteCollectorProxy $group) {
-    $group->get('', [ComicController::class , 'list']);
-    $group->get('/{id}', [ComicController::class , 'get']);
-    $group->post('', [ComicController::class , 'create']);
+    $group->get('', [ComicController::class, 'list']);
+    $group->get('/{id}', [ComicController::class, 'get']);
+    $group->post('', [ComicController::class, 'create']);
+    $group->put('', [ComicController::class, 'update']);
 });
 
 $app->group('/chapter', function (RouteCollectorProxy $group) {
-    $group->get('', [ChapterController::class , 'list']);
-    $group->get('/{id}', [ChapterController::class , 'get']);
-    $group->post('', [ChapterController::class , 'create']);
+    $group->get('', [ChapterController::class, 'list']);
+    $group->get('/{id}', [ChapterController::class, 'get']);
+    $group->post('', [ChapterController::class, 'create']);
 });
 
 $app->group('/content_chapter', function (RouteCollectorProxy $group) {
-    $group->get('', [ContentChapterController::class , 'list']);
-    $group->get('/{id}', [ContentChapterController::class , 'get']);
-    $group->post('', [ContentChapterController::class , 'create']);
+    $group->get('', [ContentChapterController::class, 'list']);
+    $group->get('/{id}', [ContentChapterController::class, 'get']);
+    $group->post('', [ContentChapterController::class, 'create']);
 });
 
 $app->group('/file', function (RouteCollectorProxy $group) {
-    $group->get('', [FilesController::class , 'list']);
-    $group->get('/{id}', [FilesController::class , 'get']);
-    $group->post('/upload', [FilesController::class , 'uploadFile']);
-    $group->get('/link/{path}/{file}/{ext}', [FilesController::class , 'link']);
+    $group->get('', [FilesController::class, 'list']);
+    $group->get('/{id}', [FilesController::class, 'get']);
+    $group->post('/upload', [FilesController::class, 'uploadFile']);
+    $group->get('/link/{path}/{file}/{ext}', [FilesController::class, 'link']);
 });
 
 
