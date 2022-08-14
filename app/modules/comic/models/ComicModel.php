@@ -1,6 +1,9 @@
 <?php
+
 namespace app\modules\comic\models;
+
 use app\Core\IModel;
+
 class ComicModel implements IModel
 {
     public ?int $id;
@@ -29,19 +32,19 @@ class ComicModel implements IModel
         string $createAt,
         string $updateAt
     ) {
-	    $this->id = $id;
-	    $this->title = $title;
-	    $this->id_user = $id_user;
-	    $this->uniqueid = $uniqueid;
-	    $this->sinopse = $sinopse;
-	    $this->autor = $autor;
-	    $this->year_up = $year_up;
-	    $this->scans = $scans;
-	    $this->status = $status;
-	    $this->cover = $cover;
-	    $this->createAt = $createAt;
-	    $this->updateAt = $updateAt;
-	}
+        $this->id = $id;
+        $this->title = $title;
+        $this->id_user = $id_user;
+        $this->uniqueid = $uniqueid;
+        $this->sinopse = $sinopse;
+        $this->autor = $autor;
+        $this->year_up = $year_up;
+        $this->scans = $scans;
+        $this->status = $status;
+        $this->cover = $cover;
+        $this->createAt = $createAt;
+        $this->updateAt = $updateAt;
+    }
     function toArray(): array
     {
         return [
@@ -55,15 +58,15 @@ class ComicModel implements IModel
             'scans' => $this->scans,
             'status' => $this->status,
             'cover' => $this->cover,
-            'createAt'=> $this->createAt,
-            'updateAt'=> $this->updateAt
+            'createat' => $this->createAt,
+            'updateat' => $this->updateAt
         ];
     }
     static function arrayTo(array $params): self
     {
         return new self(
             id: $params['id'],
-            id_user:$params['id_user'],
+            id_user: $params['id_user'],
             title: $params['title'],
             uniqueid: $params['uniqueid'],
             sinopse: $params['sinopse'],
@@ -72,9 +75,8 @@ class ComicModel implements IModel
             scans: $params['scans'],
             status: $params['status'],
             cover: $params['cover'],
-            createAt: $params['createAt'],
-            updateAt: $params['updateAt']
+            createAt: $params['createat'],
+            updateAt: $params['updateat']
         );
     }
-	
 }
