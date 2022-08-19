@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\chapter\controllers;
+
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use app\modules\chapter\repositories\ChapterRepository;
@@ -25,8 +26,7 @@ class ChapterController
       $response->getBody()->write(
         json_encode($mangas)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -42,8 +42,7 @@ class ChapterController
       $response->getBody()->write(
         json_encode($mangas)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -55,14 +54,13 @@ class ChapterController
   {
     try {
       $body = json_decode($request->getBody()->getContents(), true);
-      $body['updateAt'] = 'now()';
+      $body['updateat'] = 'now()';
       $comic = ChapterModel::arrayTo($body);
       $mangas = $this->detalhesMangaRepository->create($comic);
       $response->getBody()->write(
         json_encode($mangas)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );

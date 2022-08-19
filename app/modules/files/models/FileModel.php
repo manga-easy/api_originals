@@ -1,5 +1,7 @@
 <?php
+
 namespace app\modules\files\models;
+
 use app\Core\IModel;
 
 class FileModel implements IModel
@@ -10,17 +12,17 @@ class FileModel implements IModel
     public string $path;
     public string $name;
     public int $size;
-    public string $createAt;
-    public string $updateAt;
-    function __construct(?int $id, string $id_user, string $path, string $name, int $size, string $createAt, string $updateAt)
+    public string $createat;
+    public string $updateat;
+    function __construct(?int $id, string $id_user, string $path, string $name, int $size, string $createat, string $updateat)
     {
         $this->id = $id;
         $this->id_user = $id_user;
         $this->path = $path;
         $this->name = $name;
         $this->size = $size;
-        $this->createAt = $createAt;
-        $this->updateAt = $updateAt;
+        $this->createat = $createat;
+        $this->updateat = $updateat;
     }
     static function arrayTo(array $params): self
     {
@@ -30,9 +32,9 @@ class FileModel implements IModel
             path: $params['path'],
             name: $params['name'],
             size: $params['size'],
-            createAt: $params['createAt'],
-            updateAt: $params['updateAt']
-            );
+            createat: $params['createat'],
+            updateat: $params['updateat']
+        );
     }
     function toArray(): array
     {
@@ -42,9 +44,8 @@ class FileModel implements IModel
             'path' => $this->path,
             'name' => $this->name,
             'size' => $this->size,
-            'createAt' => $this->createAt,
-            'updateAt' => $this->updateAt
+            'createat' => $this->createat,
+            'updateat' => $this->updateat
         ];
     }
-
 }

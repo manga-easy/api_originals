@@ -9,16 +9,16 @@ CREATE TABLE comic (
     scans varchar NOT NULL,
     status boolean NOT NULL,
     cover varchar NOT NULL,
-    createAt timestamp DEFAULT now(),
-    updateAt timestamp DEFAULT now()
+    createat timestamp DEFAULT now(),
+    updateat timestamp DEFAULT now()
 );
 
 CREATE TABLE genero (
     id SERIAL NOT NULL PRIMARY KEY,
     title varchar NOT NULL,
     code varchar NOT NULL UNIQUE,
-    createAt timestamp DEFAULT now(),
-    updateAt timestamp DEFAULT now()
+    createat timestamp DEFAULT now(),
+    updateat timestamp DEFAULT now()
 );
 
 CREATE TABLE chapter (
@@ -26,8 +26,8 @@ CREATE TABLE chapter (
     id_comic int NOT null,
     title varchar NOT NULL,
     number float NOT NULL,
-    createAt timestamp DEFAULT now(),
-    updateAt timestamp DEFAULT now(),
+    createat timestamp DEFAULT now(),
+    updateat timestamp DEFAULT now(),
     CONSTRAINT fk_comic FOREIGN KEY(id_comic) REFERENCES comic(id)
 );
 
@@ -36,8 +36,8 @@ CREATE TABLE content_chapter (
     id_chapter int NOT null,
     content text NOT NULL,
     type varchar NOT NULL,
-    createAt timestamp DEFAULT now(),
-    updateAt timestamp DEFAULT now(),
+    createat timestamp DEFAULT now(),
+    updateat timestamp DEFAULT now(),
     CONSTRAINT fk_chapter FOREIGN KEY(id_chapter) REFERENCES chapter(id)
 );
 
@@ -47,6 +47,6 @@ CREATE TABLE file (
     path text NOT NULL,
     name varchar NOT NULL,
     size int NOT NULL,
-    createAt timestamp DEFAULT now(),
-    updateAt timestamp DEFAULT now()
+    createat timestamp DEFAULT now(),
+    updateat timestamp DEFAULT now()
 );

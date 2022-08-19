@@ -16,8 +16,8 @@ class ComicModel implements IModel
     public string $scans;
     public bool $status;
     public string $cover;
-    public string $createAt;
-    public string $updateAt;
+    public string $createat;
+    public string $updateat;
     function __construct(
         ?int $id,
         string $title,
@@ -29,8 +29,8 @@ class ComicModel implements IModel
         string $scans,
         bool $status,
         string $cover,
-        string $createAt,
-        string $updateAt
+        string $createat,
+        string $updateat
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -42,8 +42,8 @@ class ComicModel implements IModel
         $this->scans = $scans;
         $this->status = $status;
         $this->cover = $cover;
-        $this->createAt = $createAt;
-        $this->updateAt = $updateAt;
+        $this->createat = $createat;
+        $this->updateat = $updateat;
     }
     function toArray(): array
     {
@@ -58,8 +58,8 @@ class ComicModel implements IModel
             'scans' => $this->scans,
             'status' => $this->status,
             'cover' => $this->cover,
-            'createat' => $this->createAt,
-            'updateat' => $this->updateAt
+            'createat' => $this->createat,
+            'updateat' => $this->updateat
         ];
     }
     static function arrayTo(array $params): self
@@ -75,8 +75,8 @@ class ComicModel implements IModel
             scans: $params['scans'],
             status: $params['status'],
             cover: $params['cover'],
-            createAt: $params['createat'],
-            updateAt: $params['updateat']
+            createat: $params['createat'],
+            updateat: $params['updateat']
         );
     }
 }
