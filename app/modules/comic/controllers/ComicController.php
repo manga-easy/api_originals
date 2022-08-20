@@ -77,6 +77,7 @@ class ComicController
     try {
       $body = json_decode($request->getBody()->getContents(), true);
       $comic = ComicModel::arrayTo($body);
+      $body['updateat'] = 'now()';
       $mangas = $this->detalhesMangaRepository->update($comic->toArray());
       $response->getBody()->write(
         json_encode(['success' => $mangas])
