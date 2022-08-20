@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\content_chapter\controllers;
+
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use app\modules\content_chapter\repositories\ContentChapterRepository;
@@ -24,8 +25,7 @@ class ContentChapterController
       $response->getBody()->write(
         json_encode($dados)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -41,8 +41,7 @@ class ContentChapterController
       $response->getBody()->write(
         json_encode($mangas)
       );
-    }
-    catch (\Throwable $th) {
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
@@ -61,10 +60,28 @@ class ContentChapterController
       }
       $dados = $this->contentChapterRepository->create($content);
       $response->getBody()->write(
-        json_encode($dados)
+        json_encode(['success' => $dados])
+      );
+    } catch (\Throwable $th) {
+      $response->getBody()->write(
+        json_encode(['erro' => $th->getMessage()])
       );
     }
-    catch (\Throwable $th) {
+    return $response;
+  }
+
+  function update(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    try {
+      $body = json_decode($request->getBody()->getContents(), true);
+      $content = ContentChapterModel::arrayTo($body);
+      TypeContent::tryFrom($content->type);
+      $content->updateAt = 'now()';
+      $dados = $this->contentChapterRepository->update($content->toArray());
+      $response->getBody()->write(
+        json_encode(['success' => $dados])
+      );
+    } catch (\Throwable $th) {
       $response->getBody()->write(
         json_encode(['erro' => $th->getMessage()])
       );
