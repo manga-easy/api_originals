@@ -24,7 +24,7 @@ class ChapterController
       }
       $mangas = $this->detalhesMangaRepository->get($args);
       $response->getBody()->write(
-        json_encode($mangas)
+        json_encode(['success' => $mangas])
       );
     } catch (\Throwable $th) {
       $response->getBody()->write(
@@ -58,7 +58,25 @@ class ChapterController
       $comic = ChapterModel::arrayTo($body);
       $mangas = $this->detalhesMangaRepository->create($comic);
       $response->getBody()->write(
-        json_encode($mangas)
+        json_encode(['success' => $mangas])
+      );
+    } catch (\Throwable $th) {
+      $response->getBody()->write(
+        json_encode(['erro' => $th->getMessage()])
+      );
+    }
+    return $response;
+  }
+
+  function update(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    try {
+      $body = json_decode($request->getBody()->getContents(), true);
+      $comic = ChapterModel::arrayTo($body);
+      $body['updateat'] = 'now()';
+      $mangas = $this->detalhesMangaRepository->update($comic->toArray());
+      $response->getBody()->write(
+        json_encode(['success' => $mangas])
       );
     } catch (\Throwable $th) {
       $response->getBody()->write(
