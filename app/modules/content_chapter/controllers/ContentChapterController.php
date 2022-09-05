@@ -76,7 +76,7 @@ class ContentChapterController
       $body = json_decode($request->getBody()->getContents(), true);
       $content = ContentChapterModel::arrayTo($body);
       TypeContent::tryFrom($content->type);
-      $content->updateAt = 'now()';
+      $content->updateat = 'now()';
       $dados = $this->contentChapterRepository->update($content->toArray());
       $response->getBody()->write(
         json_encode(['success' => $dados])
