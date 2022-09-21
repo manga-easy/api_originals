@@ -1,9 +1,7 @@
-# Files and directories created by pub.
-.dart_tool/
-.packages
-
-# Conventional directory for build output.
-build/
-pubspec.lock
-composer.lock
-/vendor
+node_modules
+build
+coverage
+.vscode
+.DS_STORE
+.env
+tmp
