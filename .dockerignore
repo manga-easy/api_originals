@@ -1,9 +1,3 @@
-.dockerignore
-Dockerfile
-build/
-.dart_tool/
-.git/
-.github/
-.gitignore
-.idea/
-.packages
+node_modules
+dist
+.env
