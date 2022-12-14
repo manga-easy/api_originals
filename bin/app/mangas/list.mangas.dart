@@ -12,6 +12,12 @@ class MangasList {
               'title': 'Mentally Broken',
               'href': 'easy-scanMentallyBroken',
               'capa': '${Configs.ipAplication}/mentally-broken/capa.png',
+            },
+            {
+              'id': 'in/habitants',
+              'title': 'in/habitants',
+              'href': 'easy-scanin/habitants',
+              'capa': '${Configs.ipAplication}/in-habitants/capa.png',
             }
           ]
         }),

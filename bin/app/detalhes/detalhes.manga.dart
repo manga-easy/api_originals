@@ -44,6 +44,43 @@ class DetalhesManga {
           }),
           headers: {'Content-Type': 'application/json; charset=utf-8'},
         );
+      case 'in/habitants':
+        return Response.ok(
+          json.encode({
+            'data': {
+              'id': 'in/habitants',
+              'title': 'In/habitants',
+              'href': 'easy-scanin/habitants',
+              'sinopse':
+                  'Em um mundo não muito diferente deste, os menos afortunados da população devem lutar para sobreviver. Quando um grupo de desajustados se reúne e descobre que compartilha dores semelhantes, eles decidem combinar suas forças.\n'
+                      'Usando tecnologia de ponta, eles decidem reconstruir o status quo e criar um novo mundo mais receptivo a todos. Ou pelo menos era o que eles esperavam.\n'
+                      'Mais em: inhabitats.zone',
+              'generos': [
+                {'title': 'drama', 'href': ''},
+                {'title': 'slice of life', 'href': ''},
+                {'title': 'acao', 'href': ''},
+              ],
+              'autor': 'in/habitants',
+              'artista': 'in/habitants',
+              'capitulos': List.generate(2, (index) => index += 1)
+                  .map(
+                    (e) => {
+                      'title': '$e',
+                      'href': 'easy-scanin/habitants$e',
+                      'id': 'in/habitants$e',
+                      'imagens': [],
+                      'date': DateTime.now().toString(),
+                    },
+                  )
+                  .toList(),
+              'ano': '2022',
+              'scans': 'in/habitants',
+              'status': 'Ativo',
+              'capa': '${Configs.ipAplication}/in-habitants/capa.jpg',
+            }
+          }),
+          headers: {'Content-Type': 'application/json; charset=utf-8'},
+        );
       default:
         return Response.ok(json.encode({}));
     }
