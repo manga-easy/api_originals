@@ -9,8 +9,15 @@ class Chapt {
   Chapt(this.number, this.quant);
 }
 
-var mentali = [Chapt('01', 35), Chapt('02', 15), Chapt('03', 15)];
-var inhabitants = [Chapt('1', 15)];
+var mentali = [
+  Chapt('01', 35),
+  Chapt('02', 15),
+  Chapt('03', 15),
+  Chapt('04', 17),
+  Chapt('05', 20),
+  Chapt('06', 13)
+];
+var inhabitants = [Chapt('1', 63), Chapt('2', 20)];
 
 class ImagechapterList {
   Response call(Request req) {

@@ -25,12 +25,13 @@ class DetalhesManga {
               ],
               'autor': 'Maicon Aart',
               'artista': 'Maicon Aart',
-              'capitulos': List.generate(3, (index) => index += 1)
+              'capitulos': List.generate(6, (index) => index += 1)
                   .map(
                     (e) => {
                       'title': '$e',
                       'href': 'easy-scanMentallyBroken$e',
                       'id': 'MentallyBroken$e',
+                      'number': e,
                       'imagens': [],
                       'date': DateTime.now().toString(),
                     },
@@ -68,6 +69,7 @@ class DetalhesManga {
                       'title': '$e',
                       'href': 'easy-scanin/habitants$e',
                       'id': 'in/habitants$e',
+                      'number': e,
                       'imagens': [],
                       'date': DateTime.now().toString(),
                     },
