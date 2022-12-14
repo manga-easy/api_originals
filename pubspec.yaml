@@ -4,7 +4,7 @@ version: 1.0.0
 # homepage: https://www.example.com
 
 environment:
-  sdk: '>=2.18.5 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 
 dependencies:
@@ -15,6 +15,3 @@ dependencies:
 
 dev_dependencies:
   http: ^0.13.5
-  lints: ^2.0.1
-  test_process: ^2.0.3
-  test: ^1.22.1
