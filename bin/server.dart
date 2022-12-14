@@ -8,7 +8,6 @@ import 'app/detalhes/detalhes.manga.dart';
 import 'app/image.chapters/image.chapters.dart';
 import 'app/mangas/list.mangas.dart';
 import 'core/middlewares/authorize.dart';
-import 'core/configs.dart';
 
 // Configure routes.
 final _router = Router()
@@ -17,18 +16,16 @@ final _router = Router()
   ..get('/imagechapter', ImagechapterList());
 
 var files = createStaticHandler(
-  'files',
+  '/app/files',
   useHeaderBytesForContentType: true,
 );
 void main(List<String> args) async {
-  // Use any available host or container IP (usually `0.0.0.0`).
   final cascade = Cascade().add(files).add(_router);
   // Configure a pipeline that logs requests.
-  final _handler =
-      Pipeline().addMiddleware(logRequests()).addMiddleware(Authorize()).addHandler(cascade.handler);
-
+  final handler = Pipeline()
+      .addMiddleware(logRequests())
+      .addMiddleware(Authorize())
+      .addHandler(cascade.handler);
   // For running in containers, we respect the PORT environment variable.
-  final port = int.parse(Configs.portAplication);
-  await serve(_handler, Configs.ipAplication, port);
-  print('Server listening on port http://${Configs.ipAplication}:${Configs.portAplication}');
+  await serve(handler, '0.0.0.0', 80);
 }
