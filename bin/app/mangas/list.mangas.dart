@@ -17,7 +17,7 @@ class MangasList {
               'id': 'in/habitants',
               'title': 'in/habitants',
               'href': 'easy-scanin/habitants',
-              'capa': '${Configs.ipAplication}/in-habitants/capa.jpg',
+              'capa': '${Configs.ipAplication}/in-habitants/capa.png',
             }
           ]
         }),

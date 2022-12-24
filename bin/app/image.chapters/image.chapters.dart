@@ -17,7 +17,15 @@ var mentali = [
   Chapt('05', 20),
   Chapt('06', 13)
 ];
-var inhabitants = [Chapt('1', 63), Chapt('2', 20)];
+var inhabitants = [
+  Chapt('1', 63),
+  Chapt('2', 73),
+  Chapt('3', 67),
+  Chapt('4', 56),
+  Chapt('5', 41),
+  Chapt('6', 46),
+  Chapt('7', 33),
+];
 
 class ImagechapterList {
   Response call(Request req) {

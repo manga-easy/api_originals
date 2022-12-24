@@ -55,7 +55,7 @@ class DetalhesManga {
               'sinopse':
                   'Em um mundo não muito diferente deste, os menos afortunados da população devem lutar para sobreviver. Quando um grupo de desajustados se reúne e descobre que compartilha dores semelhantes, eles decidem combinar suas forças.\n'
                       'Usando tecnologia de ponta, eles decidem reconstruir o status quo e criar um novo mundo mais receptivo a todos. Ou pelo menos era o que eles esperavam.\n'
-                      'Mais em: inhabitats.zone',
+                      'Mais em: inhabitants.zone',
               'generos': [
                 {'title': 'drama', 'href': ''},
                 {'title': 'slice of life', 'href': ''},
@@ -63,7 +63,7 @@ class DetalhesManga {
               ],
               'autor': 'in/habitants',
               'artista': 'in/habitants',
-              'capitulos': List.generate(2, (index) => index += 1)
+              'capitulos': List.generate(7, (index) => index += 1)
                   .map(
                     (e) => {
                       'title': '$e',
@@ -78,7 +78,7 @@ class DetalhesManga {
               'ano': '2022',
               'scans': 'in/habitants',
               'status': 'Ativo',
-              'capa': '${Configs.ipAplication}/in-habitants/capa.jpg',
+              'capa': '${Configs.ipAplication}/in-habitants/capa.png',
             }
           }),
           headers: {'Content-Type': 'application/json; charset=utf-8'},
