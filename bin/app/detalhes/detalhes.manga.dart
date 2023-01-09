@@ -63,7 +63,7 @@ class DetalhesManga {
               ],
               'autor': 'in/habitants',
               'artista': 'in/habitants',
-              'capitulos': List.generate(7, (index) => index += 1)
+              'capitulos': List.generate(13, (index) => index += 1)
                   .map(
                     (e) => {
                       'title': '$e',
