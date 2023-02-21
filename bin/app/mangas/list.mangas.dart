@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import '../../core/configs.dart';
+import '../../etheral_plane_meta_dados.dart';
 
 class MangasList {
+  final EtheralPlaneMeta etheralPlaneMeta = EtheralPlaneMeta();
   Response call(Request req) {
     return Response.ok(
         json.encode({
@@ -18,7 +20,8 @@ class MangasList {
               'title': 'in/habitants',
               'href': 'easy-scanin/habitants',
               'capa': '${Configs.ipAplication}/in-habitants/capa.png',
-            }
+            },
+            etheralPlaneMeta.toManga(),
           ]
         }),
         headers: {'Content-Type': 'application/json; charset=utf-8'});

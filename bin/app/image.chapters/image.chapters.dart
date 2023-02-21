@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
 import '../../core/configs.dart';
+import '../../etheral_plane_meta_dados.dart';
 
 class Chapt {
   final String number;
@@ -34,7 +35,7 @@ var inhabitants = [
 ];
 
 class ImagechapterList {
-  Response call(Request req) {
+  Future<Response> call(Request req) async {
     var manga = req.requestedUri.queryParameters['chapter'];
     manga = manga!.replaceAll('easy-scan', '');
     if (manga.contains('MentallyBroken')) {
@@ -71,6 +72,18 @@ class ImagechapterList {
                 },
               )
               .toList()
+        }),
+        headers: {'Content-Type': 'application/json; charset=utf-8'},
+      );
+    }
+    if (manga.contains('EtheralPlane')) {
+      final meta = EtheralPlaneMeta();
+      var index = manga.replaceFirst('EtheralPlane', '');
+      return Response.ok(
+        json.encode({
+          'data': [
+            await meta.imageChaters(index),
+          ]
         }),
         headers: {'Content-Type': 'application/json; charset=utf-8'},
       );

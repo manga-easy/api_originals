@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
 import '../../core/configs.dart';
+import '../../etheral_plane_meta_dados.dart';
 
 class DetalhesManga {
   Response call(Request req) {
@@ -81,6 +82,12 @@ class DetalhesManga {
               'capa': '${Configs.ipAplication}/in-habitants/capa.png',
             }
           }),
+          headers: {'Content-Type': 'application/json; charset=utf-8'},
+        );
+      case 'EtheralPlane':
+        final meta = EtheralPlaneMeta();
+        return Response.ok(
+          json.encode({'data': meta.toDetaalhesManga()}),
           headers: {'Content-Type': 'application/json; charset=utf-8'},
         );
       default:
