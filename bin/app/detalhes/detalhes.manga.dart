@@ -54,9 +54,7 @@ class DetalhesManga {
               'title': 'In/habitants',
               'href': 'easy-scanin/habitants',
               'sinopse':
-                  'Em um mundo não muito diferente deste, os menos afortunados da população devem lutar para sobreviver. Quando um grupo de desajustados se reúne e descobre que compartilha dores semelhantes, eles decidem combinar suas forças.\n'
-                      'Usando tecnologia de ponta, eles decidem reconstruir o status quo e criar um novo mundo mais receptivo a todos. Ou pelo menos era o que eles esperavam.\n'
-                      'Mais em: inhabitants.zone',
+                  'in/habitants é um manga contemporâneo slice-of-life e cyberpunk que acompanha as vidas de seu diverso cast de personagens enquanto navegam em um mundo cheio de tecnologia, injustiças e lutas pessoais. O manga oferece uma perspectiva refrescante na intersecção da sociedade, tecnologia e experiência humana.',
               'generos': [
                 {'title': 'drama', 'href': ''},
                 {'title': 'slice of life', 'href': ''},
