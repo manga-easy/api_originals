@@ -32,6 +32,20 @@ var inhabitants = [
   Chapt('11', 33),
   Chapt('12', 34),
   Chapt('13', 34),
+  Chapt('14', 35),
+  Chapt('15', 39),
+  Chapt('16', 33),
+  Chapt('17', 38),
+  Chapt('18', 40),
+  Chapt('19', 36),
+  Chapt('20', 34),
+  Chapt('21', 36),
+  Chapt('22', 26),
+  Chapt('23', 22),
+  Chapt('24', 20),
+  Chapt('25', 21),
+  Chapt('26', 24),
+  Chapt('27', 25),
 ];
 
 class ImagechapterList {
