@@ -10,7 +10,7 @@ class Author(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     var id: Long? = null,
-    var name: String? = null,
-    var createdAt: String? = null,
-    var updatedAt: String? = null
+    var name: String
+    var createdAt: String
+    var updatedAt: String
 ) : Serializable
