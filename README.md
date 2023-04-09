@@ -9,4 +9,6 @@ To run this project you need to have:
 
 After installing docker just run the config dev environment script.
 
-After that just import the project to intelij and start it.
+![click in the play](resources/Screenshot from 2023-04-09 16-01-36.png)
+
+After that just import the project to Intelij and start it.
