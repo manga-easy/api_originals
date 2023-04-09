@@ -12,11 +12,14 @@ data class Author(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     val id: Long? = null,
+
     @Column(name = "name", nullable = false)
     val name: String? = null,
-    @Column(name = "works", nullable = false)
-    @ManyToOne
+
+    @Column(name = "works")
+    @OneToMany(mappedBy = "authorId")
     var works: List<Work>,
+
     var updatedAt: Date? = null,
     var createdAt: Date = Date()
 ) : Serializable {

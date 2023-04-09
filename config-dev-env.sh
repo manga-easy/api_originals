@@ -2,9 +2,7 @@
 
 echo "Setting configs for dev environment"
 
-export POSTGRES_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' originals_postgres)
-echo "Copy this IP address and put it into your application.properties"
-echo $POSTGRES_IP
+export POSTGRES_IP
 
 # Check if a container with the name "originals_postgres" already exists
 if [ "$(docker ps -aq -f name=originals_postgres)" ]; then
@@ -25,5 +23,7 @@ else
     -d postgres:15.2-alpine3.17
 fi
 
-
+POSTGRES_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' originals_postgres)
+echo "Copy this IP address and put it into your application.properties"
+echo "$POSTGRES_IP"
 

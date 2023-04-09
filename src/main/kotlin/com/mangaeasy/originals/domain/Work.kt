@@ -16,8 +16,8 @@ data class Work(
     @Column(name = "title", nullable = false)
     val title: String? = null,
 
-    @Column(name = "authorId", nullable = false)
-    val authorId: Long? = null,
+    @ManyToOne(fetch = FetchType.LAZY)
+    val authorId: Author? = null,
 
     var sinopse: String? = "",
     var status: Enum<*>,
