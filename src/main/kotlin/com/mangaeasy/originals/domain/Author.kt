@@ -16,9 +16,9 @@ data class Author(
     @Column(name = "name", nullable = false)
     val name: String? = null,
 
-    @Column(name = "works")
-    @OneToMany(mappedBy = "authorId")
-    var works: List<Work>,
+    @Column(name = "authorships")
+    @OneToMany(mappedBy = "author")
+    var authorships: List<Authorship>? = emptyList(),
 
     var updatedAt: Date? = null,
     var createdAt: Date = Date()

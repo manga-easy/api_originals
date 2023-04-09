@@ -1,13 +1,14 @@
 package com.mangaeasy.originals.domain
 
+import com.mangaeasy.originals.domain.enums.WorkStatusEnum
 import jakarta.persistence.*
 import org.hibernate.Hibernate
 import java.io.Serializable
 import java.util.Date
 
-@Table(name = "works")
+@Table(name = "authorships")
 @Entity
-data class Work(
+data class Authorship(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -17,11 +18,12 @@ data class Work(
     val title: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    val authorId: Author? = null,
+    val author: Author,
 
-    var sinopse: String? = "",
-    var status: Enum<*>,
-    var pubStatus: Enum<*>,
+    var genre: List<String> = emptyList(),
+    var synopse: String? = "",
+
+    var status: Enum<WorkStatusEnum> = WorkStatusEnum.ONGOING,
     val createdAt: Date = Date(),
     var updatedAt: Date? = null,
 ) : Serializable {
@@ -34,7 +36,7 @@ data class Work(
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as Work
+        other as Authorship
 
         return id != null && id == other.id
     }

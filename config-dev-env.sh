@@ -17,6 +17,7 @@ else
     # If the container doesn't exist, create a new one
     echo "Creating new container: originals_postgres"
     docker run --name originals_postgres \
+    -p 5432:5432 \
     -e POSTGRES_PASSWORD=originals2023 \
     -e POSTGRES_USER=dev \
     -e POSTGRES_DB=originals \
