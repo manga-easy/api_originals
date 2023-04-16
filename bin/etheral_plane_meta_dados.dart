@@ -22,19 +22,14 @@ class EtheralPlaneMeta {
   ];
   final String sinopse =
       'Após ser abandonado em uma montanha gelada e isolada, Touh misteriosamente sobreviveu a morte. Anos depois, ele reencontra seu passado, junto com o desejo de saber quem o deixou para morrer anos atrás.';
-  final int chapters = 1;
+  final int chapters = 2;
 
   Future<Map<String, dynamic>?> imageChaters(String id) async {
-    switch (id) {
-      case '1':
-        return ImageChapter(
-          src: await File('/app/files/etheral-plane/$id.html').readAsString(),
-          state: 1,
-          tipo: TypeFonte.text,
-        ).toJson();
-      default:
-        return null;
-    }
+    return ImageChapter(
+      src: await File('/app/files/etheral-plane/$id.html').readAsString(),
+      state: 1,
+      tipo: TypeFonte.text,
+    ).toJson();
   }
 
   Map<String, dynamic> toManga() {
