@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:manga_easy_sdk/manga_easy_sdk.dart';
 
-import 'core/configs.dart';
+import '../../core/configs.dart';
 
 class EtheralPlaneMeta {
   final String uniqueid = 'EtheralPlane';

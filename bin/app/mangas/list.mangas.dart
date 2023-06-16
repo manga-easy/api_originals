@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import '../../core/configs.dart';
-import '../../etheral_plane_meta_dados.dart';
+import '../obras/etheral_plane_meta_dados.dart';
 
 class MangasList {
   final EtheralPlaneMeta etheralPlaneMeta = EtheralPlaneMeta();
