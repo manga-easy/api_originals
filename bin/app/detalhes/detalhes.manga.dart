@@ -6,12 +6,14 @@ import '../../core/configs.dart';
 import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
 import '../obras/imperiais_meta.dart';
+import '../obras/manto_de_guerra_meta.dart';
 import '../obras/os_grandes_guardioes_meta.dart';
 
 class DetalhesManga extends ResponseController {
   final ImperiaisMeta imperiaisMeta = ImperiaisMeta();
   final EtheralPlaneMeta etheralPlaneMeta = EtheralPlaneMeta();
   final OsGrandesGuardioes osGrandesGuardioes = OsGrandesGuardioes();
+  final MantoDeGuerra mantoDeGuerra = MantoDeGuerra();
 
   Response call(Request req) {
     var manga = req.requestedUri.queryParameters['manga'];
@@ -21,6 +23,9 @@ class DetalhesManga extends ResponseController {
     }
     if (Helps.convertUniqueid(manga) == osGrandesGuardioes.uniqueid) {
       return response(osGrandesGuardioes.toDetaalhesManga());
+    }
+    if (Helps.convertUniqueid(manga) == mantoDeGuerra.uniqueid) {
+      return response(mantoDeGuerra.toDetaalhesManga());
     }
     switch (manga) {
       case 'MentallyBroken':

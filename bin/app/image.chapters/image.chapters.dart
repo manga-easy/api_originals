@@ -5,6 +5,7 @@ import '../../core/configs.dart';
 import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
 import '../obras/imperiais_meta.dart';
+import '../obras/manto_de_guerra_meta.dart';
 import '../obras/os_grandes_guardioes_meta.dart';
 
 class Chapt {
@@ -54,6 +55,8 @@ var inhabitants = [
 class ImagechapterList extends ResponseController {
   final ImperiaisMeta _imperiaisMeta = ImperiaisMeta();
   final OsGrandesGuardioes osGrandesGuardioes = OsGrandesGuardioes();
+  final MantoDeGuerra mantoDeGuerra = MantoDeGuerra();
+
   Future<Response> call(Request req) async {
     var manga = req.requestedUri.queryParameters['chapter'];
     manga = manga!.replaceAll('easy-scan', '');
@@ -98,14 +101,8 @@ class ImagechapterList extends ResponseController {
     if (manga.contains('EtheralPlane')) {
       final meta = EtheralPlaneMeta();
       var index = manga.replaceFirst('EtheralPlane', '');
-      return Response.ok(
-        json.encode({
-          'data': [
-            await meta.imageChaters(index),
-          ]
-        }),
-        headers: {'Content-Type': 'application/json; charset=utf-8'},
-      );
+      var images = await meta.imageChaters(index);
+      return response(images);
     }
     if (manga.contains(_imperiaisMeta.uniqueid)) {
       var index = manga.replaceFirst(_imperiaisMeta.uniqueid, '');
@@ -115,6 +112,11 @@ class ImagechapterList extends ResponseController {
     if (manga.contains(osGrandesGuardioes.uniqueid)) {
       var index = manga.replaceFirst(osGrandesGuardioes.uniqueid, '');
       var images = await osGrandesGuardioes.imageChaters(index);
+      return response(images);
+    }
+    if (manga.contains(mantoDeGuerra.uniqueid)) {
+      var index = manga.replaceFirst(mantoDeGuerra.uniqueid, '');
+      var images = await mantoDeGuerra.imageChaters(index);
       return response(images);
     }
     return Response.ok(json.encode({}));
