@@ -78,11 +78,13 @@ class OsGrandesGuardioes extends ObrasMeta {
   }
 
   @override
-  Future<Map<String, dynamic>> imageChaters(String id) async {
-    return ImageChapter(
-      src: await File('files/$uniqueid/$id.html').readAsString(),
-      state: 1,
-      tipo: TypeFonte.text,
-    ).toJson();
+  Future<List<Map<String, dynamic>>> imageChaters(String id) async {
+    return [
+      ImageChapter(
+        src: await File('files/$uniqueid/$id.html').readAsString(),
+        state: 1,
+        tipo: TypeFonte.text,
+      ).toJson()
+    ];
   }
 }

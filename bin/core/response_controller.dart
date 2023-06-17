@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
 class ResponseController {
-  Response response(Map<String, dynamic> data) {
+  Response response(data) {
     return Response.ok(
       json.encode(
         {

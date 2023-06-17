@@ -13,7 +13,7 @@ abstract class ObrasMeta {
   final int idHost = 7;
   final String scan = 'Manga Easy Originals';
 
-  Future<Map<String, dynamic>?> imageChaters(String id);
+  Future<List<Map<String, dynamic>>> imageChaters(String id);
 
   Map<String, dynamic> toManga();
 

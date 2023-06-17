@@ -35,12 +35,14 @@ class EtheralPlaneMeta extends ObrasMeta {
   final int chapters = 2;
 
   @override
-  Future<Map<String, dynamic>?> imageChaters(String id) async {
-    return ImageChapter(
-      src: await File('files/etheral-plane/$id.html').readAsString(),
-      state: 1,
-      tipo: TypeFonte.text,
-    ).toJson();
+  Future<List<Map<String, dynamic>>> imageChaters(String id) async {
+    return [
+      ImageChapter(
+        src: await File('files/etheral-plane/$id.html').readAsString(),
+        state: 1,
+        tipo: TypeFonte.text,
+      ).toJson()
+    ];
   }
 
   @override
