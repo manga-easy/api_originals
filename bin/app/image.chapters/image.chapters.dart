@@ -5,6 +5,7 @@ import '../../core/configs.dart';
 import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
 import '../obras/imperiais_meta.dart';
+import '../obras/os_grandes_guardioes_meta.dart';
 
 class Chapt {
   final String number;
@@ -52,6 +53,7 @@ var inhabitants = [
 
 class ImagechapterList extends ResponseController {
   final ImperiaisMeta _imperiaisMeta = ImperiaisMeta();
+  final OsGrandesGuardioes osGrandesGuardioes = OsGrandesGuardioes();
   Future<Response> call(Request req) async {
     var manga = req.requestedUri.queryParameters['chapter'];
     manga = manga!.replaceAll('easy-scan', '');
@@ -108,6 +110,11 @@ class ImagechapterList extends ResponseController {
     if (manga.contains(_imperiaisMeta.uniqueid)) {
       var index = manga.replaceFirst(_imperiaisMeta.uniqueid, '');
       var images = await _imperiaisMeta.imageChaters(index);
+      return response(images);
+    }
+    if (manga.contains(osGrandesGuardioes.uniqueid)) {
+      var index = manga.replaceFirst(osGrandesGuardioes.uniqueid, '');
+      var images = await osGrandesGuardioes.imageChaters(index);
       return response(images);
     }
     return Response.ok(json.encode({}));

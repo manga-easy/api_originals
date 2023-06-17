@@ -6,16 +6,21 @@ import '../../core/configs.dart';
 import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
 import '../obras/imperiais_meta.dart';
+import '../obras/os_grandes_guardioes_meta.dart';
 
 class DetalhesManga extends ResponseController {
   final ImperiaisMeta imperiaisMeta = ImperiaisMeta();
   final EtheralPlaneMeta etheralPlaneMeta = EtheralPlaneMeta();
+  final OsGrandesGuardioes osGrandesGuardioes = OsGrandesGuardioes();
 
   Response call(Request req) {
     var manga = req.requestedUri.queryParameters['manga'];
     manga = manga!.replaceAll('easy-scan', '');
     if (Helps.convertUniqueid(manga) == imperiaisMeta.uniqueid) {
       return response(imperiaisMeta.toDetaalhesManga());
+    }
+    if (Helps.convertUniqueid(manga) == osGrandesGuardioes.uniqueid) {
+      return response(osGrandesGuardioes.toDetaalhesManga());
     }
     switch (manga) {
       case 'MentallyBroken':
