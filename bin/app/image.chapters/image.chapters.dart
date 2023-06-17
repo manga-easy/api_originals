@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
 import '../../core/configs.dart';
+import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
+import '../obras/imperiais_meta.dart';
 
 class Chapt {
   final String number;
@@ -48,7 +50,8 @@ var inhabitants = [
   Chapt('27', 25),
 ];
 
-class ImagechapterList {
+class ImagechapterList extends ResponseController {
+  final ImperiaisMeta _imperiaisMeta = ImperiaisMeta();
   Future<Response> call(Request req) async {
     var manga = req.requestedUri.queryParameters['chapter'];
     manga = manga!.replaceAll('easy-scan', '');
@@ -101,6 +104,11 @@ class ImagechapterList {
         }),
         headers: {'Content-Type': 'application/json; charset=utf-8'},
       );
+    }
+    if (manga.contains(_imperiaisMeta.uniqueid)) {
+      var index = manga.replaceFirst(_imperiaisMeta.uniqueid, '');
+      var images = await _imperiaisMeta.imageChaters(index);
+      return response(images);
     }
     return Response.ok(json.encode({}));
   }

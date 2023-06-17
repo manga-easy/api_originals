@@ -1,13 +1,22 @@
 import 'dart:convert';
+import 'package:manga_easy_sdk/manga_easy_sdk.dart';
 import 'package:shelf/shelf.dart';
 
 import '../../core/configs.dart';
+import '../../core/response_controller.dart';
 import '../obras/etheral_plane_meta_dados.dart';
+import '../obras/imperiais_meta.dart';
 
-class DetalhesManga {
+class DetalhesManga extends ResponseController {
+  final ImperiaisMeta imperiaisMeta = ImperiaisMeta();
+  final EtheralPlaneMeta etheralPlaneMeta = EtheralPlaneMeta();
+
   Response call(Request req) {
     var manga = req.requestedUri.queryParameters['manga'];
     manga = manga!.replaceAll('easy-scan', '');
+    if (Helps.convertUniqueid(manga) == imperiaisMeta.uniqueid) {
+      return response(imperiaisMeta.toDetaalhesManga());
+    }
     switch (manga) {
       case 'MentallyBroken':
         return Response.ok(
