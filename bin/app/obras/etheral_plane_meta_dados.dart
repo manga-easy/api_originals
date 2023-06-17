@@ -37,7 +37,7 @@ class EtheralPlaneMeta extends ObrasMeta {
   @override
   Future<Map<String, dynamic>?> imageChaters(String id) async {
     return ImageChapter(
-      src: await File('/app/files/etheral-plane/$id.html').readAsString(),
+      src: await File('files/etheral-plane/$id.html').readAsString(),
       state: 1,
       tipo: TypeFonte.text,
     ).toJson();

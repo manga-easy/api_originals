@@ -14,7 +14,7 @@ final _router = Router()
   ..get('/imagechapter', ImagechapterList());
 
 var files = createStaticHandler(
-  '/app/files',
+  'files/',
   useHeaderBytesForContentType: true,
 );
 void main(List<String> args) async {
