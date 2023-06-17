@@ -3,14 +3,22 @@ import 'dart:io';
 import 'package:manga_easy_sdk/manga_easy_sdk.dart';
 
 import '../../core/configs.dart';
+import 'obra_meta.dart';
 
-class EtheralPlaneMeta {
+class EtheralPlaneMeta extends ObrasMeta {
+  @override
   final String uniqueid = 'EtheralPlane';
+  @override
   final String title = 'Etheral Plane';
+  @override
   final String thumb = '${Configs.ipAplication}/etheral-plane/thumb.png';
+  @override
   final String author = 'Anyca';
+  @override
   final String year = '2022';
+  @override
   final String status = 'ativo';
+  @override
   final List<Gender> genders = [
     Gender.fromValue(href: '', title: 'acao'),
     Gender.fromValue(title: 'aventura', href: ''),
@@ -20,10 +28,13 @@ class EtheralPlaneMeta {
     Gender.fromValue(title: 'poderes', href: ''),
     Gender.fromValue(title: 'romance', href: ''),
   ];
+  @override
   final String sinopse =
       'Após ser abandonado em uma montanha gelada e isolada, Touh misteriosamente sobreviveu a morte. Anos depois, ele reencontra seu passado, junto com o desejo de saber quem o deixou para morrer anos atrás.';
+  @override
   final int chapters = 2;
 
+  @override
   Future<Map<String, dynamic>?> imageChaters(String id) async {
     return ImageChapter(
       src: await File('/app/files/etheral-plane/$id.html').readAsString(),
@@ -32,6 +43,7 @@ class EtheralPlaneMeta {
     ).toJson();
   }
 
+  @override
   Map<String, dynamic> toManga() {
     return {
       'id': uniqueid,
@@ -41,6 +53,7 @@ class EtheralPlaneMeta {
     };
   }
 
+  @override
   Map<String, dynamic> toDetaalhesManga() {
     return {
       'id': uniqueid,
