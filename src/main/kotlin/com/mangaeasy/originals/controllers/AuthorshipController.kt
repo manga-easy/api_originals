@@ -1,6 +1,7 @@
 package com.mangaeasy.originals.controllers
 
 import com.mangaeasy.originals.domain.Authorship
+import com.mangaeasy.originals.repository.AuthorRepository
 import com.mangaeasy.originals.repository.AuthorshipRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -15,35 +16,42 @@ class AuthorshipController {
     lateinit var authorshipRepository: AuthorshipRepository
 
     @GetMapping("/{id}")
-    fun getWorkById(@PathVariable id: Long): ResponseEntity<Authorship> {
-        val work = authorshipRepository.findById(id)
-        return if (work.isPresent) ResponseEntity.ok(work.get())
+    fun getAuthorshipById(@PathVariable id: Long): ResponseEntity<Authorship> {
+        val authorship = authorshipRepository.findById(id)
+        return if (authorship.isPresent) ResponseEntity.ok(authorship.get())
         else ResponseEntity.notFound().build()
     }
 
     @PostMapping
-    fun createWork(@RequestBody authorship: Authorship): ResponseEntity<Authorship> {
-        val savedWork = authorshipRepository.save(authorship)
-        return ResponseEntity(savedWork, HttpStatus.CREATED)
+    fun createAuthorship(@RequestBody authorship: Authorship): ResponseEntity<Authorship> {
+        // Update the authorships collection in the associated Author
+        authorship.author.authorships.add(authorship)
+
+        val savedAuthorship = authorshipRepository.save(authorship)
+        return ResponseEntity(savedAuthorship, HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
-    fun updateWork(@PathVariable id: Long, @RequestBody authorship: Authorship): ResponseEntity<Authorship> {
-        val workToUpdate = authorshipRepository.findById(id)
-        return if (workToUpdate.isPresent) {
-            val updatedWork = authorship.copy(id = id)
-            authorshipRepository.save(updatedWork)
-            ResponseEntity(updatedWork, HttpStatus.OK)
+    fun updateAuthorship(@PathVariable id: Long, @RequestBody authorship: Authorship): ResponseEntity<Authorship> {
+        val authorshipToUpdate = authorshipRepository.findById(id)
+        return if (authorshipToUpdate.isPresent) {
+            val updatedAuthorship = authorship.copy(id = id)
+            authorshipRepository.save(updatedAuthorship)
+            ResponseEntity(updatedAuthorship, HttpStatus.OK)
         } else {
             ResponseEntity.notFound().build()
         }
     }
 
     @DeleteMapping("/{id}")
-    fun deleteWork(@PathVariable id: Long): ResponseEntity<Unit> {
-        val workToDelete = authorshipRepository.findById(id)
-        return if (workToDelete.isPresent) {
-            authorshipRepository.delete(workToDelete.get())
+    fun deleteAuthorship(@PathVariable id: Long): ResponseEntity<Unit> {
+        val authorshipToDelete = authorshipRepository.findById(id)
+        return if (authorshipToDelete.isPresent) {
+            val authorship = authorshipToDelete.get()
+            // Remove the authorship from the associated Author's collection
+            authorship.author.authorships.remove(authorship)
+
+            authorshipRepository.delete(authorship)
             ResponseEntity.noContent().build()
         } else {
             ResponseEntity.notFound().build()
@@ -51,8 +59,8 @@ class AuthorshipController {
     }
 
     @GetMapping
-    fun getAllWorks(): ResponseEntity<List<Authorship>> {
-        val works = authorshipRepository.findAll()
-        return ResponseEntity(works, HttpStatus.OK)
+    fun getAllAuthorships(): ResponseEntity<List<Authorship>> {
+        val authorships = authorshipRepository.findAll()
+        return ResponseEntity(authorships, HttpStatus.OK)
     }
 }

@@ -1,5 +1,6 @@
 package com.mangaeasy.originals.domain
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.mangaeasy.originals.domain.enums.WorkStatusEnum
 import jakarta.persistence.*
 import org.hibernate.Hibernate
@@ -18,6 +19,7 @@ data class Authorship(
     val title: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     val author: Author,
 
     var genre: List<String> = emptyList(),
