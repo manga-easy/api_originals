@@ -16,10 +16,13 @@ data class Author(
     @Column(name = "name", nullable = false)
     val name: String? = null,
 
+    @Column(name = "userId", nullable = false, unique = true)
+    val userId: String? = null,
+
     @OneToMany(mappedBy = "author", cascade = [CascadeType.ALL], orphanRemoval = true)
     var authorships: MutableList<Authorship> = mutableListOf(),
 
-    var updatedAt: Date? = null,
+    var updatedAt: Date? = Date(),
     var createdAt: Date = Date()
 ) : Serializable {
     override fun equals(other: Any?): Boolean {
