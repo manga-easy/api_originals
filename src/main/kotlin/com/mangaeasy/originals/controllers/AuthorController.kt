@@ -23,6 +23,10 @@ class AuthorController {
 
     @PostMapping
     fun createAuthor(@RequestBody author: Author): ResponseEntity<Author> {
+        val result = authorRepository.findByUserId(author.userId!!)
+        if (result != null){
+            return ResponseEntity.badRequest().build()
+        }
         val savedAuthor = authorRepository.save(author)
         return ResponseEntity(savedAuthor, HttpStatus.CREATED)
     }
