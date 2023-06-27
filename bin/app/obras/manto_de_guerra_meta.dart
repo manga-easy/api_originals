@@ -10,7 +10,7 @@ class MantoDeGuerra extends ObrasMeta {
   String get author => 'Guilherme Ferraro';
 
   @override
-  int get chapters => 2;
+  int get chapters => 3;
 
   @override
   List<Gender> get genders => [
@@ -95,12 +95,39 @@ class MantoDeGuerra extends ObrasMeta {
     if (await folder.exists()) {
       await for (var entity in folder.list(recursive: true)) {
         if (entity is File) {
-          images.add(
-              '${Configs.ipAplication}${entity.path.replaceFirst('files', '').replaceAll(r'\', '/')}');
+          images.add(entity.path);
         }
       }
     }
+    return sortFilePaths(
+      images
+          .map((e) =>
+              '${Configs.ipAplication}${e.replaceFirst('files', '').replaceAll(r'\', '/')}')
+          .toList(),
+    );
+  }
 
-    return images;
+  List<String> sortFilePaths(List<String> filePaths) {
+    filePaths.sort((a, b) {
+      final regex = RegExp(r'(\d+)');
+      final matchA =
+          regex.allMatches(a).map((match) => match.group(0)).toList();
+      final matchB =
+          regex.allMatches(b).map((match) => match.group(0)).toList();
+
+      for (int i = 0; i < matchA.length && i < matchB.length; i++) {
+        final numberA = int.parse(matchA[i]!);
+        final numberB = int.parse(matchB[i]!);
+
+        final comparison = numberA.compareTo(numberB);
+        if (comparison != 0) {
+          return comparison;
+        }
+      }
+
+      return matchA.length.compareTo(matchB.length);
+    });
+
+    return filePaths;
   }
 }

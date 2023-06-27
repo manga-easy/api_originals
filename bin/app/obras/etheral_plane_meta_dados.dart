@@ -32,7 +32,7 @@ class EtheralPlaneMeta extends ObrasMeta {
   final String sinopse =
       'Após ser abandonado em uma montanha gelada e isolada, Touh misteriosamente sobreviveu a morte. Anos depois, ele reencontra seu passado, junto com o desejo de saber quem o deixou para morrer anos atrás.';
   @override
-  final int chapters = 2;
+  final int chapters = 3;
 
   @override
   Future<List<Map<String, dynamic>>> imageChaters(String id) async {

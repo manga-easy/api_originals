@@ -28,7 +28,8 @@ class OsGrandesGuardioes extends ObrasMeta {
 
   @override
   String get sinopse =>
-      'No início dos tempos, um Deus chamado Ligthering criou seu filho, Ligthering, que se tornou um guardião responsável por cuidar de todo o universo. Ligthering criou mais quatro filhos, que se tornaram planetas e guardiões deles. Esses planetas abrigavam vida e pessoas com dons especiais, conhecidos como Monsters. Houve guerras pela posse dos Monsters, e após muitos anos, o planeta Dayrados encontrou a paz, mas apenas temporariamente, pois vilões fizeram um golpe de estado e obrigaram o descendente da Fênix a deixar seu planeta e vir para a Terra, na esperança de proteger seu Monster e se tornar um guardião da Terra. ';
+      'Sinopse: No início dos tempos, um Deus chamado Ligthering criou seu filho, que se tornou o guardião responsável por cuidar de todo o equilíbrio do universo. Ligthering criou mais quatro filhos, que se tornaram planetas e guardiões deles. Esses planetas abrigavam vida e  seres vivos com talentos especiais, conhecidos como Monsters. Houve incontáveis guerras pela posse dos Monsters, e após muitos anos, o planeta Dayrados alcançou a paz, mas apenas temporariamente,'
+      'pois ninguém estava preparado para um golpe de estado que obrigou o portador da Fênix a deixar Dayrados e vir para a Terra, na esperança de proteger seu Monster e se tornar um guardião da Terra.';
 
   @override
   String get status => 'ativo';
@@ -81,7 +82,7 @@ class OsGrandesGuardioes extends ObrasMeta {
   Future<List<Map<String, dynamic>>> imageChaters(String id) async {
     return [
       ImageChapter(
-        src: await File('files/$uniqueid/$id.html').readAsString(),
+        src: await File('files/$uniqueid/$id.htm').readAsString(),
         state: 1,
         tipo: TypeFonte.text,
       ).toJson()
