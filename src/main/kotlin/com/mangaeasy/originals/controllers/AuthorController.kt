@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/authors")
@@ -35,7 +36,7 @@ class AuthorController {
     fun updateAuthor(@PathVariable id: Long, @RequestBody author: Author): ResponseEntity<Author> {
         val authorToUpdate = authorRepository.findById(id)
         return if (authorToUpdate.isPresent) {
-            val updatedAuthor = author.copy(id = id)
+            val updatedAuthor = authorToUpdate.get().copy(name = author.name, updatedAt = Date())
             authorRepository.save(updatedAuthor)
             ResponseEntity(updatedAuthor, HttpStatus.OK)
         } else {
