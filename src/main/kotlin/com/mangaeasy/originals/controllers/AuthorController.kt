@@ -1,4 +1,4 @@
-package com.mangaeasy.originals.controller
+package com.mangaeasy.originals.controllers
 
 import com.mangaeasy.originals.domain.Author
 import com.mangaeasy.originals.repository.AuthorRepository

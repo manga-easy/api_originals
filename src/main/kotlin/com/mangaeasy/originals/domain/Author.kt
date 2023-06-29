@@ -12,12 +12,16 @@ data class Author(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     val id: Long? = null,
-    @Column(name = "name", nullable = false)
-    val name: String? = null
 
+    @Column(name = "name", nullable = false)
+    val name: String? = null,
+
+    @OneToMany(mappedBy = "author", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var authorships: MutableList<Authorship> = mutableListOf(),
+
+    var updatedAt: Date? = null,
+    var createdAt: Date = Date()
 ) : Serializable {
-   var createdAt: Date = Date()
-   var updatedAt: String = ""
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
