@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.Date
 
 @RestController
 @RequestMapping("/authorships")
@@ -46,7 +47,8 @@ class AuthorshipController {
                 title = authorshipDto.title,
                 synopsis = authorshipDto.synopsis,
                 genre = authorshipDto.genre,
-                status = authorshipDto.status
+                status = authorshipDto.status,
+                updatedAt = Date()
             )
             authorshipRepository.save(updatedAuthorship)
             ResponseEntity(updatedAuthorship, HttpStatus.OK)
