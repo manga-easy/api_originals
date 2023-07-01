@@ -5,4 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface AuthorshipRepository: JpaRepository<Authorship, Long>
+interface AuthorshipRepository: JpaRepository<Authorship, Int>

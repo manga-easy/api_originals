@@ -11,7 +11,7 @@ data class Author(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Column(name = "name", nullable = false)
     val name: String? = null,

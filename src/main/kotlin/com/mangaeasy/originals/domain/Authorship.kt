@@ -13,7 +13,7 @@ data class Authorship(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Column(name = "title", nullable = false)
     val title: String? = null,
@@ -23,11 +23,11 @@ data class Authorship(
     val author: Author,
 
     var genre: List<String> = emptyList(),
-    var synopse: String? = "",
+    var synopsis: String? = "",
 
-    var status: Enum<WorkStatusEnum> = WorkStatusEnum.ONGOING,
+    var status: WorkStatusEnum = WorkStatusEnum.ONGOING,
     val createdAt: Date = Date(),
-    var updatedAt: Date? = null,
+    var updatedAt: Date = Date(),
 ) : Serializable {
 
     @Override
