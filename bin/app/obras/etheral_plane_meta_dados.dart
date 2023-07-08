@@ -7,17 +7,23 @@ import 'obra_meta.dart';
 
 class EtheralPlaneMeta extends ObrasMeta {
   @override
-  final String uniqueid = 'EtheralPlane';
+  String get uniqueid => Helps.convertUniqueid(title);
+
   @override
-  final String title = 'Etheral Plane';
+  String get title => 'Etheral Plane';
+
   @override
-  final String thumb = '${Configs.ipAplication}/etheral-plane/thumb.png';
+  String get thumb => '${Configs.ipAplication}/$uniqueid/thumb.png';
+
   @override
-  final String author = 'Anyca';
+  String get author => 'Anyca';
+
   @override
-  final String year = '2022';
+  String get year => '2022';
+
   @override
-  final String status = 'ativo';
+  String get status => 'ativo';
+
   @override
   final List<Gender> genders = [
     Gender.fromValue(href: '', title: 'acao'),
@@ -36,9 +42,16 @@ class EtheralPlaneMeta extends ObrasMeta {
 
   @override
   Future<List<Map<String, dynamic>>> imageChaters(String id) async {
+    var file = File('files/$uniqueid/$id.htm');
+    if (!await file.exists()) {
+      file = File('files/$uniqueid/$id.html');
+    }
+    if (!await file.exists()) {
+      return [];
+    }
     return [
       ImageChapter(
-        src: await File('files/etheral-plane/$id.html').readAsString(),
+        src: await file.readAsString(),
         state: 1,
         tipo: TypeFonte.text,
       ).toJson()
@@ -47,40 +60,39 @@ class EtheralPlaneMeta extends ObrasMeta {
 
   @override
   Map<String, dynamic> toManga() {
-    return {
-      'id': uniqueid,
-      'title': title,
-      'href': 'easy-scan$uniqueid',
-      'capa': thumb,
-    };
+    return Manga(
+      capa: thumb,
+      href: 'easy-scan$uniqueid',
+      title: title,
+      idHost: idHost,
+      uniqueid: uniqueid,
+    ).toJson();
   }
 
   @override
   Map<String, dynamic> toDetaalhesManga() {
-    return {
-      'id': uniqueid,
-      'title': title,
-      'href': 'easy-scan$uniqueid',
-      'capa': thumb,
-      'sinopse': sinopse,
-      'generos': genders.map((e) => e.toJson()).toList(),
-      'autor': author,
-      'capitulos': List.generate(chapters, (index) => index += 1)
-          .map(
-            (e) => {
-              'title': '$e',
-              'href': 'easy-scan$uniqueid$e',
-              'id': '$uniqueid$e',
-              'number': e,
-              'imagens': [],
-              'date': DateTime.now().toString(),
-            },
-          )
+    return DetalhesManga(
+      uniqueid: uniqueid,
+      title: title,
+      capa: thumb,
+      sinopse: sinopse,
+      generos: genders,
+      autor: author,
+      artista: author,
+      capitulos: List.generate(chapters, (index) => index += 1)
+          .map((e) => Chapter(
+                title: '$e',
+                href: 'easy-scan$uniqueid$e',
+                id: '$uniqueid$e',
+                imagens: [],
+                number: e.toDouble(),
+                date: DateTime.now().toString(),
+              ))
           .toList(),
-      'ano': year,
-      'scans': 'Manga Easy Originals',
-      'status': status,
-      'artista': '',
-    };
+      ano: year,
+      scans: scan,
+      status: status,
+      idHost: idHost,
+    ).toJson();
   }
 }

@@ -1,41 +1,40 @@
 import 'package:manga_easy_sdk/manga_easy_sdk.dart';
-
 import '../../core/configs.dart';
 import 'obra_meta.dart';
 
-class MantoDeGuerra extends ObrasMeta {
+class MentallyBroken extends ObrasMeta {
   @override
-  String get author => 'Guilherme Ferraro';
+  String get author => 'Maicon Aart';
 
   @override
-  int get chapters => 3;
+  int get chapters => 6;
 
   @override
   List<Gender> get genders => [
-        Gender.fromValue(href: '', title: 'shonen'),
-        Gender.fromValue(href: '', title: 'fantasia'),
-        Gender.fromValue(href: '', title: 'acao'),
-        Gender.fromValue(href: '', title: 'shonen'),
+        Gender.fromValue(href: '', title: 'drama'),
+        Gender.fromValue(href: '', title: 'suspense'),
+        Gender.fromValue(href: '', title: 'Seinen'),
       ];
 
   @override
   String get uniqueid => Helps.convertUniqueid(title);
 
   @override
-  String get year => '2023';
+  String get year => '2022';
 
   @override
   String get sinopse =>
-      'Em um mundo viking atormentado pela escuridão, surge uma batalha épica entre humanos e seres demoníacos, chamados Ichiros. Neste mangá emocionante, intitulado "Manto de guerra", mergulhe em uma jornada repleta de ação e mitologia nórdica.';
+      'Mentally Broken conta a história do Daiki, um escritor que tenta aliviar os traumas do seu passado escrevendo vários livros.\n'
+      'Com o tempo ele percebe que as coisas na sua vida continuam piorando... não importa o quanto você tenha sofrido, nada é tão ruim que não possa piorar.';
 
   @override
   String get status => 'ativo';
 
   @override
-  String get thumb => '${Configs.ipAplication}/$uniqueid/thumb.gif';
+  String get thumb => '${Configs.ipAplication}/$uniqueid/capa.png';
 
   @override
-  String get title => 'Manto de Guerra';
+  String get title => 'Mentally Broken';
 
   @override
   Map<String, dynamic> toDetaalhesManga() {

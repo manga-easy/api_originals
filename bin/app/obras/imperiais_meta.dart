@@ -1,8 +1,5 @@
 import 'dart:io';
-
 import 'package:manga_easy_sdk/manga_easy_sdk.dart';
-import 'package:manga_easy_sdk/src/modules/manga/gender.dart';
-
 import '../../core/configs.dart';
 import 'obra_meta.dart';
 
@@ -11,7 +8,7 @@ class ImperiaisMeta extends ObrasMeta {
   String get author => 'Rodsa';
 
   @override
-  int get chapters => 2;
+  int get chapters => 3;
 
   @override
   List<Gender> get genders => [];
@@ -79,9 +76,16 @@ class ImperiaisMeta extends ObrasMeta {
 
   @override
   Future<List<Map<String, dynamic>>> imageChaters(String id) async {
+    var file = File('files/$uniqueid/$id.htm');
+    if (!await file.exists()) {
+      file = File('files/$uniqueid/$id.html');
+    }
+    if (!await file.exists()) {
+      return [];
+    }
     return [
       ImageChapter(
-        src: await File('files/$uniqueid/$id.htm').readAsString(),
+        src: await file.readAsString(),
         state: 1,
         tipo: TypeFonte.text,
       ).toJson()

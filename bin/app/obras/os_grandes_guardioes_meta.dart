@@ -10,7 +10,7 @@ class OsGrandesGuardioes extends ObrasMeta {
   String get author => 'Davi Yared';
 
   @override
-  int get chapters => 7;
+  int get chapters => 13;
 
   @override
   List<Gender> get genders => [
@@ -80,9 +80,16 @@ class OsGrandesGuardioes extends ObrasMeta {
 
   @override
   Future<List<Map<String, dynamic>>> imageChaters(String id) async {
+    var file = File('files/$uniqueid/$id.htm');
+    if (!await file.exists()) {
+      file = File('files/$uniqueid/$id.html');
+    }
+    if (!await file.exists()) {
+      return [];
+    }
     return [
       ImageChapter(
-        src: await File('files/$uniqueid/$id.htm').readAsString(),
+        src: await file.readAsString(),
         state: 1,
         tipo: TypeFonte.text,
       ).toJson()
