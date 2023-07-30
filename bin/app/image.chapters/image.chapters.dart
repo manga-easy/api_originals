@@ -12,7 +12,7 @@ class ImagechapterList extends ResponseController {
     for (var element in ObrasMeta.onAll) {
       if (manga.contains(element.uniqueid)) {
         var index = manga.replaceFirst(element.uniqueid, '');
-        var images = await element.imageChaters(index);
+        var images = await element.contentChapters(index);
         return response(images);
       }
     }

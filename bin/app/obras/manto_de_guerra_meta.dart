@@ -38,51 +38,5 @@ class MantoDeGuerra extends ObrasMeta {
   String get title => 'Manto de Guerra';
 
   @override
-  Map<String, dynamic> toDetaalhesManga() {
-    return DetalhesManga(
-      uniqueid: uniqueid,
-      title: title,
-      capa: thumb,
-      sinopse: sinopse,
-      generos: genders,
-      autor: author,
-      artista: '',
-      capitulos: List.generate(chapters, (index) => index += 1)
-          .map((e) => Chapter(
-                title: '$e',
-                href: 'easy-scan$uniqueid$e',
-                id: '$uniqueid$e',
-                imagens: [],
-                number: e.toDouble(),
-                date: DateTime.now().toString(),
-              ))
-          .toList(),
-      ano: year,
-      scans: scan,
-      status: status,
-      idHost: idHost,
-    ).toJson();
-  }
-
-  @override
-  Map<String, dynamic> toManga() {
-    return Manga(
-      capa: thumb,
-      href: 'easy-scan$uniqueid',
-      title: title,
-      idHost: idHost,
-      uniqueid: uniqueid,
-    ).toJson();
-  }
-
-  @override
-  Future<List<Map<String, dynamic>>> imageChaters(String id) async {
-    return (await listFilesFolder('files/$uniqueid/$id'))
-        .map((e) => ImageChapter(
-              src: e,
-              state: 1,
-              tipo: TypeFonte.image,
-            ).toJson())
-        .toList();
-  }
+  TypeFonte get contentType => TypeFonte.image;
 }
